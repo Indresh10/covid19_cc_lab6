@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+        <title>COVID-19 Dashboard - Analysis</title>
+    </head>
+
+    <body>
+
+        <div class="container mt-4">
+            <h2>COVID-19 Dashboard - Analysis</h2>
+            <canvas id="myChart" width="400" height="200"></canvas>
+        </div>
+
+        <!-- Include Chart.js library -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.min.js"></script>
+        <script>
+            // Chart data passed from Flask
+            var chartData = {{ chart_data| safe }};
+
+            var ctx = document.getElementById('myChart').getContext('2d');
+            var myChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: chartData.labels,
+                    datasets: [ {
+                        label: 'No of Positive Cases',
+                        data: chartData.values,
+                        backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                        borderColor: 'rgba(255, 99, 132, 1)',
+                        borderWidth: 1
+                    } ]
+                },
+                options: {
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            });
+        </script>
+
+    </body>
+
+</html>

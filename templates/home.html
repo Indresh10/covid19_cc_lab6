@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+        <title>COVID-19 Dashboard - Home</title>
+    </head>
+
+    <body>
+
+        <div class="container mt-4">
+            <h2>COVID-19 Dashboard - Home</h2>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>State</th>
+                        <th>Date of Record</th>
+                        <th>No of Samples</th>
+                        <th>No of Deaths</th>
+                        <th>No of Positive Cases</th>
+                        <th>No of Negative Cases</th>
+                        <th>No of Discharges</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for row in data %}
+                    <tr>
+                        <td>{{ row[0] }}</td>
+                        <td>{{ row[1] }}</td>
+                        <td>{{ row[2] }}</td>
+                        <td>{{ row[3] }}</td>
+                        <td>{{ row[4] }}</td>
+                        <td>{{ row[5] }}</td>
+                        <td>{{ row[6] }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+    </body>
+
+</html>

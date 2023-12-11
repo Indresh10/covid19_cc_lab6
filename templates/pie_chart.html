@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8" />
+        <meta
+              name="viewport"
+              content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <link
+              rel="stylesheet"
+              href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
+        <title>COVID-19 Dashboard - Pie Chart</title>
+    </head>
+
+    <body>
+        <div class="container mt-4">
+            <h2>COVID-19 Dashboard - Pie Chart</h2>
+            <canvas id="myPieChart" width="400" height="200"></canvas>
+        </div>
+
+        <!-- Include Chart.js library -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.min.js"></script>
+        <script>
+            // Pie chart data passed from Flask
+            var pieChartData = {
+                labels: {{ labels| tojson | safe }},
+            values: {{ values | tojson | safe }}
+      };
+
+            var ctx = document.getElementById('myPieChart').getContext('2d');
+            var myPieChart = new Chart(ctx, {
+                type: 'pie',
+                data: {
+                    labels: pieChartData.labels,
+                    datasets: [ {
+                        data: pieChartData.values,
+                        backgroundColor: [
+                            'rgba(255, 99, 132, 0.7)',
+                            'rgba(54, 162, 235, 0.7)',
+                            'rgba(255, 206, 86, 0.7)',
+                            'rgba(75, 192, 192, 0.7)',
+                            'rgba(153, 102, 255, 0.7)',
+                            'rgba(255, 159, 64, 0.7)',
+                            'rgba(220, 220, 220, 0.7)',
+                        ],
+                        borderWidth: 1
+                    } ]
+                }
+            });
+        </script>
+    </body>
+
+</html>
